@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <form method="post" action="{{ url_for('inventory.add_inventory') }}">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+         {{ form.name.label }}
+         {{ form.name(class="form-control", placeholder="Name") }}
+      </div>
+      {{ form.submit() }}
+   </form>
+{% endblock %}

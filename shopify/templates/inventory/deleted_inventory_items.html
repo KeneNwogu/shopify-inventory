@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+   <div>
+      <h3>Shopify Inventory Management Application - {{ inventory.name }}</h3>
+      <a class="btn btn-primary" href="{{ url_for('items.add_inventory_item', inventory_name=inventory.name) }}">
+         Add Item
+      </a>
+      <a class="btn btn-primary" href="{{ url_for('inventory.inventory_items', inventory_name=inventory.name) }}">
+         Items
+      </a>
+   </div>
+    <table class="table">
+       <thead>
+         <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">In stock</th>
+            <th scope="col">Sales</th>
+         </tr>
+       </thead>
+       <tbody>
+         {% for item in deleted_items %}
+            <tr>
+               <td>{{ item.name }}</td>
+               <td>{{ item.price }}</td>
+               <td>{{ item.quantity }}</td>
+               <td>{{ item.in_stock }}</td>
+               <td>{{ item.sales }}</td>
+
+               <td>
+                  <a class="btn btn-danger" href="{{ url_for('items.undo_delete', inventory_name=inventory.name, item_id=item._id) }}">
+                     Undo Delete</a>
+               </td>
+            </tr>
+         {% endfor %}
+       </tbody>
+    </table>
+ </div>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <div>
+      <h3>Shopify Inventory Management Application - All Inventories</h3>
+      <p>Create an inventory and keep track of items</p>
+   </div>
+    <div>
+       {% if inventories %}
+          <table class="table">
+             <thead>
+               <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">#</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for inventory in inventories %}
+                  <tr>
+                     <td>{{ inventory.name }}</td>
+                     <th scope="row">
+                        <a class="btn btn-primary" href="{{ url_for('inventory.inventory_items', inventory_name=inventory.name) }}">View</a>
+                     </th>
+                  </tr>
+               {% endfor %}
+             </tbody>
+          </table>
+         {% else %}
+            <p>No inventory available. <a href="{{ url_for('inventory.add_inventory') }}">Add an Inventory</a></p>
+       {% endif %}
+       <div>
+         <a class="btn btn-primary" href="{{ url_for('inventory.add_inventory') }}">Add Inventory</a>
+       </div>
+    </div>
+{% endblock %}

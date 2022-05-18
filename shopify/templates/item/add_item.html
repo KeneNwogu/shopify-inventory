@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h2>ADD Item to {{ inventory.name }} inventory</h2>
+   <form method="post" action="{{ url_for('items.add_inventory_item', inventory_name=inventory.name) }}">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group col-md-12">
+         {{ form.name.label }}
+         {{ form.name(class="form-control", placeholder="Name") }}
+      </div>
+
+      <div class="form-group col-md-12">
+         {{ form.name.label }}
+         {{ form.quantity(class="form-control", placeholder="Quantity") }}
+      </div>
+
+      <div class="form-group col-md-6">
+         {{ form.price.label }}
+         {{ form.price(class="form-control", placeholder="Price") }}
+      </div>
+
+      <div class="form-group col-md-6">
+         {{ form.sales.label }}
+         {{ form.sales(class="form-control", placeholder="Sales") }}
+      </div>
+
+      <div class="form-group">
+         {{ form.in_stock(class="form-check-input") }}
+         {{ form.in_stock.label(class="form-check-label") }}
+      </div>
+
+      {{ form.submit(class="btn btn-primary") }}
+   </form>
+{% endblock %}

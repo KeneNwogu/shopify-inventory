@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <div>
+      <h3>Shopify Inventory Management Application - {{ inventory.name }}</h3>
+      <a class="btn btn-primary" href="{{ url_for('items.add_inventory_item', inventory_name=inventory.name) }}">Add Item</a>
+      <a class="btn btn-primary" href="{{ url_for('inventory.deleted_inventory_items', inventory_name=inventory.name) }}">Deleted items</a>
+   </div>
+
+    <div>
+       <table class="table">
+          <thead>
+            <tr>
+               <th scope="col">Name</th>
+               <th scope="col">Price</th>
+               <th scope="col">Quantity</th>
+               <th scope="col">In stock</th>
+               <th scope="col">Sales</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in inventory.items %}
+               <tr>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.in_stock }}</td>
+                  <td>{{ item.sales }}</td>
+                  <td>
+                     <a class="btn btn-primary" href="{{ url_for('items.edit_inventory_item', inventory_name=inventory.name, item_id=item._id) }}">
+                        Edit</a>
+                  </td>
+                  <td>
+                     <a class="btn btn-danger" href="{{ url_for('items.delete_inventory_item', inventory_name=inventory.name, item_id=item._id) }}">
+                        Delete</a>
+                  </td>
+               </tr>
+            {% endfor %}
+          </tbody>
+       </table>
+    </div>
+{% endblock %}

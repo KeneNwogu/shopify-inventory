@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Shopify Inventory</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+   <div class="d-flex justify-content-center align-items-center container" style="margin-top: 10%">
+      {% block content %}
+      {% endblock %}
+   </div>
+</body>
+</html>

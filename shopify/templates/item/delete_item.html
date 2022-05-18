@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h2>DELETE Item from {{ inventory_name }} inventory</h2>
+
+   <input class="form-control" value="{{ item.name }}" disabled>
+   <input class="form-control" value="{{ item.quantity }}" disabled>
+   <input class="form-control" value="{{ item.price }}" disabled>
+   <input class="form-control" value="{{ item.sales }}" disabled>
+
+   <form method="post" action="{{ url_for('items.delete_inventory_item', inventory_name=inventory_name, item_id=item._id) }}">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group col-md-12">
+         {{ form.comment.label }}
+         {{ form.comment(class="form-control", placeholder="Enter deletion comment") }}
+      </div>
+
+      <div class="form-group col-md-12">
+         {{ form.permanent_delete_time.label }}
+         {{ form.permanent_delete_time(class="form-control", placeholder="Enter time of deletion") }}
+      </div>
+
+      {{ form.submit(class="btn btn-danger") }}
+   </form>
+{% endblock %}
